@@ -109,5 +109,19 @@ public class HealthList
             Debug.Log("top is null");
         }
     }
+
+    
+    public string UIPrintFila() {
+        HealthNode aux;
+        string memata = "";
+        aux = top;
+           while(aux.next != null) {
+            memata = memata + aux.health.ToString() + aux.healthType.ToString() + "  ";
+            aux = aux.next;
+            Debug.Log(memata);
+            }
+        return memata;
+    }
 }
+    
 }

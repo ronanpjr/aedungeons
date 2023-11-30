@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lista;
-
 public class GameController : MonoBehaviour
 {
  // Start is called before the first frame update
-    HealthList playerHealth = new HealthList();
+    public HealthList playerHealth = new HealthList();
     void Update()
     {   
         
@@ -29,7 +28,14 @@ public class GameController : MonoBehaviour
 
         }   
 
+        if(Input.GetKey(KeyCode.N)) {
+
+            playerHealth.UIPrintFila(); 
         
+        }   
+
+
+
         if(Input.GetKey(KeyCode.B)) {
             int x = 15;
             bool type = true;
@@ -53,5 +59,3 @@ public class GameController : MonoBehaviour
         }       
     }
 }
-
-    
