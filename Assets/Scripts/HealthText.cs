@@ -19,8 +19,10 @@ public class HealthText : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        txt.text = gc.playerHealth.UIPrintFila();
+    {   
+        if(Input.GetKeyDown(KeyCode.Q)) {  
+            txt.text = gc.playerHealth.UIPrintFila();
         
+        }
     }
 }

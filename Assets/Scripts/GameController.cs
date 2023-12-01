@@ -28,14 +28,6 @@ public class GameController : MonoBehaviour
 
         }   
 
-        if(Input.GetKey(KeyCode.N)) {
-
-            playerHealth.UIPrintFila(); 
-        
-        }   
-
-
-
         if(Input.GetKey(KeyCode.B)) {
             int x = 15;
             bool type = true;
@@ -58,4 +50,5 @@ public class GameController : MonoBehaviour
             Debug.Log(playerHealth.PopMR());
         }       
     }
+
 }

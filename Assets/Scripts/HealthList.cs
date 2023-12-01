@@ -28,7 +28,7 @@ public class HealthList
         top = null;
     }
 
-    public bool Empty() {
+    public bool Empty() {   
         if(top == null) return true;
         else return false;
     }
@@ -43,13 +43,13 @@ public class HealthList
 
         return false;
     }
-
+    // Armor, um dos tipos de dano/vida 
     public bool PopArmor() {
        if(!Empty()) {
         if(top.healthType == false) {
             if(top.next == null) {
                 top = null;
-                Debug.Log("eu n aguento mais");
+                Debug.Log("top is null armor");
                 return true;
             }
             // x = top.health;
@@ -63,7 +63,7 @@ public class HealthList
         if(anterior.next == null) {
             return false;
         }
-        // x = anterior.next.health;
+    
         anterior.next = anterior.next.next;
         return true;
        }
@@ -71,13 +71,13 @@ public class HealthList
 
            
     }
-
+    // MR = Magic Resistance - um dos tipos de dano/vida
       public bool PopMR() {
        if(!Empty()) {
         if(top.healthType == true) {
             if(top.next == null) {
                 top = null;
-                Debug.Log("eu n aguento mais 2");
+                Debug.Log("top null funçao MR");
                 return true;
             }
             // x = top.health;
@@ -112,15 +112,15 @@ public class HealthList
 
     
     public string UIPrintFila() {
-        HealthNode aux;
-        string memata = "";
-        aux = top;
-           while(aux.next != null) {
-            memata = memata + aux.health.ToString() + aux.healthType.ToString() + "  ";
-            aux = aux.next;
-            Debug.Log(memata);
+        HealthNode anterior = top;
+        string healthStr = "";
+           while(anterior.next != null) {
+            healthStr = healthStr + anterior.health.ToString() + anterior.healthType.ToString() + "  ";
+            anterior = anterior.next;
+            
+            Debug.Log(healthStr);
             }
-        return memata;
+        return healthStr;
     }
 }
     
