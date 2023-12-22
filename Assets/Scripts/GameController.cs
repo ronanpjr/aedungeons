@@ -15,31 +15,31 @@ public class GameController : MonoBehaviour
     
     // Update is called once per frame
     void TestePilha() {
-        if(Input.GetKey(KeyCode.F)) {
+        if(Input.GetKeyDown(KeyCode.F)) {
             int x = 10;
             bool type = false;
             playerHealth.Push(x, type);
         }
 
-        if(Input.GetKey(KeyCode.V)) {
+        if(Input.GetKeyDown(KeyCode.V)) {
             int x = 5;
             bool type = true;
             playerHealth.Push(x, type);
 
         }   
 
-        if(Input.GetKey(KeyCode.B)) {
+        if(Input.GetKeyDown(KeyCode.B)) {
             int x = 15;
             bool type = true;
             playerHealth.Push(x, type);
 
         }
 
-        if(Input.GetKey(KeyCode.J)) {
+        if(Input.GetKeyDown(KeyCode.J)) {
             playerHealth.Display();
         }
        
-        if(Input.GetKey(KeyCode.G)) {
+        if(Input.GetKeyDown(KeyCode.G)) {
             playerHealth.PopArmor();
 
         }   

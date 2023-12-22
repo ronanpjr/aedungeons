@@ -10,17 +10,34 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     private Vector2 moveDirection;
 
+    public DirecaoMovimento direcaoMovimento;
+
+
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
+        
+        if (moveDirection.x > 0)
+        {
+            this.direcaoMovimento = DirecaoMovimento.Direita;
+        }
+        else if (moveDirection.x < 0){
+            this.direcaoMovimento = DirecaoMovimento.Esquerda;
+        }
        
+    }
+
+    private void Start(){
+        this.direcaoMovimento = DirecaoMovimento.Direita;
     }
     void FixedUpdate() {
 
         Move();
 
     }
+
+
     
     void ProcessInputs() {
         float moveX = Input.GetAxisRaw("Horizontal");
