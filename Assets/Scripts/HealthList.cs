@@ -112,6 +112,7 @@ public class HealthList
 
     
     public string UIPrintFila() {
+        if (top == null) return "No life";
         HealthNode anterior = top;
         string healthStr = "";
            while(anterior.next != null) {

@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
         }   
     
         
-        if(Input.GetKey(KeyCode.H)) {            
+        if(Input.GetKeyDown(KeyCode.H)) {            
             
             Debug.Log(playerHealth.PopMR());
         }       
