@@ -11,18 +11,22 @@ public class BehaviorTree : MonoBehaviour
     public Dictionary<string, object> Blackboard {get; set;}
     public BTNode Root { get { return mRoot; } }
 
+    // Processo de patrulha do inimigo
+    public Transform[] waypoints;
+    public Transform trans;
+    public float speed = 0.2f; 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Blackboard = new Dictionary<string, object>();
-        Blackboard.Add("WorldBounds", new Rect(0,0,0.5f,0.5f));
+       /* Blackboard = new Dictionary<string, object>();
+        Blackboard.Add("WorldBounds", new Rect(0,0,0.5f,0.5f)); */
 
         // comportamento inicial = parado;
         startedBehavior = false;
         mRoot =  new BTRepeater(this, new BTSequencer(this, 
-                 new BTNode [] {new BTAndar(this)}));
+                 new BTNode [] {new BTAndar(this, trans, waypoints)}));
         
     }
 

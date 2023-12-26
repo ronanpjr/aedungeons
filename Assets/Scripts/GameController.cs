@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lista;
+using System;
+using System.Numerics;
+
+[Serializable]
 public class GameController : MonoBehaviour
 {
  // Start is called before the first frame update
-    public HealthList playerHealth = new HealthList();
+    [SerializeField] private Transform trans; 
+    [SerializeField] private Transform healingArea0;
+    
+
+    private int nodeCount=0;
+    public HealthList playerHealth = new HealthList(10, false);
     void Update()
     {   
         
@@ -15,10 +24,13 @@ public class GameController : MonoBehaviour
     
     // Update is called once per frame
     void TestePilha() {
-        if(Input.GetKeyDown(KeyCode.F)) {
-            int x = 10;
-            bool type = false;
-            playerHealth.Push(x, type);
+        if(UnityEngine.Vector3.Distance(trans.position, healingArea0.position) < 0.1f) {
+            if(nodeCount < 10) {
+                int x = 10;
+                bool type = false;
+                playerHealth.Push(x, type);
+                nodeCount++;
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.V)) {
@@ -49,6 +61,6 @@ public class GameController : MonoBehaviour
             
             Debug.Log(playerHealth.PopMR());
         }       
-    }
+   }
 
 }

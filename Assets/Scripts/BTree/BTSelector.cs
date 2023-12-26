@@ -21,13 +21,8 @@ public class BTSelector : BTComposite
                     currentNode++;
                     if (result == Result.Success)
                         return Result.Success;
-                    else {
-                        currentNode = 0;
-                        return Result.Running;
-                    }
                 }
-
             }
-        return Result.Failure;
+            return Result.Failure;  
     }
 }

@@ -2,41 +2,40 @@ using System;
 using UnityEngine;
 public class BTAndar : BTNode 
 {   
-    protected Vector3 NextDestination {get; set;}
-    public float speed = 1 ;
-    public BTAndar(BehaviorTree t) : base(t) {
-            NextDestination = Vector3.zero;
-            FindNextDestination();
-    }
+    public Transform transform;
+    public Transform [] waypoints;
+    public int currentWaypoint = 0;
 
-    public bool FindNextDestination() {
-        object o; 
-        bool found = false;
-        
-        found = Tree.Blackboard.TryGetValue("WorldBounds", out o);
-        if (found) {
-            Rect bounds = (Rect)o;
-            float x = UnityEngine.Random.value * bounds.width;
-            float y = UnityEngine.Random.value * bounds.height;
-            NextDestination = new Vector3(x,y, 0);
-
-        }
-        return found;
+    public float waitTime = 1.5f;
+    public float waitCounter = 0;
+    public bool waiting = false;
+    public BTAndar(BehaviorTree bT, Transform t, Transform [] w) : base(bT) {
+        transform = t; 
+        waypoints = w; 
     }
+ 
+   
     
     public override Result Execute() {
-        // se chegou no ponto atual, encontre o proximo destino
-        if (Tree.gameObject.transform.position == NextDestination) {
-            if(!FindNextDestination())
-                return Result.Failure;
-            else 
-                return Result.Success;
+        if (waiting) {
+            waitCounter += Time.deltaTime;
+            if (waitCounter >= waitTime) {
+                waiting = false;
+            }
         }
         else {
-            Tree.gameObject.transform.position = Vector3.MoveTowards(Tree.gameObject.transform.position, 
-                NextDestination, Time.deltaTime * speed);
-
-                return Result.Running;
+            Transform wp = waypoints[currentWaypoint];
+            if (Vector3.Distance(transform.position, wp.position) < 0.01f) {
+                transform.position = wp.position;
+                waitCounter = 0f;
+                waiting = true;
+                currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+            }
+            else {
+                transform.position = Vector3.MoveTowards(transform.position, wp.position, Tree.speed * Time.deltaTime);
+            }
         }
+
+        return Result.Running;
     }
 }
