@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Mathematics;
 
 
 namespace Lista {
@@ -20,12 +21,17 @@ public class HealthNode
 public class HealthList
 {
     
-    [SerializeField] private HealthNode top;
+    [SerializeField] public HealthNode top;
 
 
 
     public HealthList() {
         top = null;
+    }
+
+
+    public HealthList(int v, bool t) {
+        Push(v, t);
     }
 
     public bool Empty() {   

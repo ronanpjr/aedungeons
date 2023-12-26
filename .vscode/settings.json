@@ -52,5 +52,6 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "aedungeons.sln"
+    "dotnet.defaultSolution": "aedungeons.sln",
+    "editor.fontFamily": "'Hack', 'monospace', monospace"
 }

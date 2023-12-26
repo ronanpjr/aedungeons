@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.8829, y: 205.6569}
-  m_SizeDelta: {x: 1072.2344, y: 66.6862}
+  m_AnchoredPosition: {x: 6.1977, y: 205.6569}
+  m_SizeDelta: {x: 1056.0732, y: 66.6862}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &458645982
 MonoBehaviour:
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 4.7630615, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6335,7 +6335,6 @@ GameObject:
   - component: {fileID: 2060132770}
   - component: {fileID: 2060132769}
   - component: {fileID: 2060132773}
-  - component: {fileID: 2060132774}
   - component: {fileID: 2060132775}
   m_Layer: 6
   m_Name: Slime
@@ -6476,20 +6475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93da290cb71911947b6d3360703bc2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidas: 0
---- !u!114 &2060132774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060132768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93da290cb71911947b6d3360703bc2d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidas: 3
+  v: 3
 --- !u!114 &2060132775
 MonoBehaviour:
   m_ObjectHideFlags: 0
