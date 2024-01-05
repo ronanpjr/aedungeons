@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 public class BTAndar : BTNode 
 {   
-    public Transform transform;
+    public Transform transform; // corpo do inimigo e coisa
     public Transform [] waypoints;
     public int currentWaypoint = 0;
 
@@ -30,12 +30,13 @@ public class BTAndar : BTNode
                 waitCounter = 0f;
                 waiting = true;
                 currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+                return Result.Success;
             }
             else {
                 transform.position = Vector3.MoveTowards(transform.position, wp.position, Tree.speed * Time.deltaTime);
+                return Result.Running;
             }
         }
-
-        return Result.Running;
+        return Result.Success;
     }
 }

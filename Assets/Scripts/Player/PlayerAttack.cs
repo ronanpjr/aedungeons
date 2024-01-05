@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private PlayerMovement jogador;
 
-
+     public Animator animator;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
     private void Atacar()
     {
         Transform pontoAtaque;
+        animator.SetTrigger("attacking");
         if (this.jogador.direcaoMovimento == DirecaoMovimento.Direita)
         {
             pontoAtaque = this.pontoAtaqueDireita;

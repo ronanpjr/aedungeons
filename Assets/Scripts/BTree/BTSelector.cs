@@ -23,6 +23,7 @@ public class BTSelector : BTComposite
                         return Result.Success;
                 }
             }
+            currentNode = 0;
             return Result.Failure;  
     }
 }

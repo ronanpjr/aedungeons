@@ -8,14 +8,16 @@ public class BehaviorTree : MonoBehaviour
     private bool startedBehavior;
     private Coroutine behavior;
 
-    public Dictionary<string, object> Blackboard {get; set;}
+    // public Dictionary<string, object> Blackboard {get; set;}
     public BTNode Root { get { return mRoot; } }
 
     // Processo de patrulha do inimigo
     public Transform[] waypoints;
     public Transform trans;
+    public Transform player;
     public float speed = 0.2f; 
 
+    public GameController gameController;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,8 @@ public class BehaviorTree : MonoBehaviour
 
         // comportamento inicial = parado;
         startedBehavior = false;
-        mRoot =  new BTRepeater(this, new BTSequencer(this, 
-                 new BTNode [] {new BTAndar(this, trans, waypoints)}));
+        mRoot =  new BTRepeater(this, new BTSelector(this, new BTNode[] {new BTSequencer(this, new BTNode[] {new BTPlayerCheck(this, player, trans), 
+                 new BTMoveTo(this, player, trans), new BTAttack(this, player, trans, gameController)}), new BTAndar(this, trans, waypoints)}));
         
     }
 

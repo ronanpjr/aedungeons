@@ -101,13 +101,14 @@ public class HealthList
         anterior.next = anterior.next.next;
         return true;
        }
+       
        else return false;
 
            
     }
     public void Display() {
         if (top != null) {
-        Debug.Log(top.next);
+        Debug.Log(top);
         Debug.Log(top.health);
         Debug.Log(top.healthType);
         }
@@ -119,15 +120,15 @@ public class HealthList
     
     public string UIPrintFila() {
         if (top == null) return "No life";
+        else {
         HealthNode anterior = top;
         string healthStr = "";
            while(anterior.next != null) {
             healthStr = healthStr + anterior.health.ToString() + anterior.healthType.ToString() + "  ";
             anterior = anterior.next;
-            
-            Debug.Log(healthStr);
             }
         return healthStr;
+        }
     }
 }
     
