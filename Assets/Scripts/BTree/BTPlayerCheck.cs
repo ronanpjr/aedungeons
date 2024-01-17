@@ -11,7 +11,7 @@ public class BTPlayerCheck : BTNode
     }
  
     public override Result Execute() {
-        if(Vector3.Distance(player.position, enemy.position) < 1f) {
+        if(Vector3.Distance(player.position, enemy.position) < 0.8f) {
             return Result.Success;
         }
         return Result.Failure;

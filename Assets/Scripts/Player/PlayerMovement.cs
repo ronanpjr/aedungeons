@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lista;
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 0.6f;
     public Rigidbody2D rb;
 
     public Animator animator;
-    private Vector2 moveDirection;
+    public Vector2 moveDirection;
 
     public DirecaoMovimento direcaoMovimento;
 
@@ -18,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
-        
         if (moveDirection.x > 0)
         {
             this.direcaoMovimento = DirecaoMovimento.Direita;
@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
 
         Move();
-        PlayerStatus();
     }
 
 
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Slime")
+        if (other.gameObject.CompareTag("Slime"))
         {
             Debug.Log("PLAYER LEVANDO DANO");
             HealthNode atual  = gc.playerHealth.top;
@@ -80,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == ("Bat")) 
+        if(other.gameObject.CompareTag(("Bat"))) 
         {
 
             Debug.Log("PLAYER LEVANDO DANO");
@@ -97,9 +96,23 @@ public class PlayerMovement : MonoBehaviour
                 } 
             }
         }
+
+        if (other.gameObject.CompareTag("LevelExit")) {
+            Scene currentScene = SceneManager.GetActiveScene();
+            if(currentScene.name == "SampleScene" || currentScene.name == "Scene3") {
+                SceneManager.LoadScene(1);
+            }
+            else {
+                SceneManager.LoadScene(2);
+            }
+            
+        }
+
+        if(other.gameObject.CompareTag("Stairs0")) {
+            Scene currentScene = SceneManager.GetActiveScene();
+            if(currentScene.name == "SampleScene") SceneManager.LoadScene(2);
+            if(currentScene.name == "Scene3") SceneManager.LoadScene(0);
+        }
     }
     
-    private void PlayerStatus() {
-        if (gc.playerHealth.top == null)  Destroy(gameObject);
-    }
 }

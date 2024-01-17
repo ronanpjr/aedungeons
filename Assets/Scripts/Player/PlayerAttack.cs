@@ -1,4 +1,6 @@
 using System;
+using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -16,13 +18,27 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private PlayerMovement jogador;
 
+    public GameObject arrowPrefab;
      public Animator animator;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Z))
         {
             Atacar();
         }
+
+
+        if(Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.X)) {
+            
+            UnityEngine.Vector2 direcaoProjetil = new UnityEngine.Vector2(animator.GetFloat("lastmoveX"), animator.GetFloat("lastmoveY"));
+            direcaoProjetil.Normalize();
+            GameObject arrow = Instantiate(arrowPrefab, transform.position, UnityEngine.Quaternion.identity);    
+            arrow.GetComponent<Rigidbody2D>().velocity = direcaoProjetil;   
+            Atirar(arrow);
+            Destroy(arrow, 3);
+        }
+        
+        
     }
 
 
@@ -69,4 +85,24 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+    
+    private void Atirar(GameObject arrow) {
+        
+        Collider2D colliderInimigo = Physics2D.OverlapCircle(arrow.transform.position, this.raioAtaque, this.layerAtaque);
+
+        if (colliderInimigo != null)
+        {
+            Debug.Log("atacando inimigo" + colliderInimigo.name);
+            // Buscando script do inimgo que esteja no mesmo objeto q o collider
+            Inimigo inimigo = colliderInimigo.GetComponent<Inimigo>();
+            
+            if (inimigo != null)
+            {
+                inimigo.receberDanoMagico();
+                Destroy(arrow);   
+            }
+        }
+    } 
+
+
 }

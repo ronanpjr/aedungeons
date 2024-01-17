@@ -15,7 +15,7 @@ public class BTAttack : BTNode
         if (gc.playerHealth.top == null) {
             return Result.Success;
         }
-        else if(Vector3.Distance(player.position, enemy.position) < 0.1f) {
+        else if(Vector3.Distance(player.position, enemy.position) <= 0.2f) {
             return Result.Running;
         }
         return Result.Failure;

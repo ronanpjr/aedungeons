@@ -30,10 +30,6 @@ public class HealthList
     }
 
 
-    public HealthList(int v, bool t) {
-        Push(v, t);
-    }
-
     public bool Empty() {   
         if(top == null) return true;
         else return false;
@@ -122,9 +118,15 @@ public class HealthList
         if (top == null) return "No life";
         else {
         HealthNode anterior = top;
-        string healthStr = "";
+        string healthStr = "Nodes de vida: ";
            while(anterior.next != null) {
-            healthStr = healthStr + anterior.health.ToString() + anterior.healthType.ToString() + "  ";
+            healthStr = healthStr + anterior.health.ToString();
+            if (anterior.healthType == false) {
+                healthStr = healthStr + " de Armadura" + "   ";
+            }
+            else {
+                 healthStr = healthStr + " de Resistencia Magica" + "   ";
+            }
             anterior = anterior.next;
             }
         return healthStr;

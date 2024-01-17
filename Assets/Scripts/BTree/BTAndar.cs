@@ -6,7 +6,7 @@ public class BTAndar : BTNode
     public Transform [] waypoints;
     public int currentWaypoint = 0;
 
-    public float waitTime = 1.5f;
+    public float waitTime = 0.5f;
     public float waitCounter = 0;
     public bool waiting = false;
     public BTAndar(BehaviorTree bT, Transform t, Transform [] w) : base(bT) {
@@ -25,7 +25,7 @@ public class BTAndar : BTNode
         }
         else {
             Transform wp = waypoints[currentWaypoint];
-            if (Vector3.Distance(transform.position, wp.position) < 0.01f) {
+            if (Vector3.Distance(transform.position, wp.position) < 0.01f   ) {
                 transform.position = wp.position;
                 waitCounter = 0f;
                 waiting = true;

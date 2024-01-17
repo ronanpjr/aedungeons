@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using UnityEngine;
 public class BTMoveTo : BTNode 
 {   
@@ -11,12 +12,13 @@ public class BTMoveTo : BTNode
     }
  
     public override Result Execute() {
-        if (Vector3.Distance(player.position, enemy.position) < 0.01f) {
+        if (UnityEngine.Vector3.Distance(player.position, enemy.position) <= 0.1f) {
             return Result.Success;
         }
-        else {
-            enemy.position = Vector3.MoveTowards(enemy.position, player.position, Tree.speed * Time.deltaTime);
-            return Result.Failure;
+        else if(UnityEngine.Vector3.Distance(player.position, enemy.position) <= 0.8f) {
+            enemy.position = UnityEngine.Vector3.MoveTowards(enemy.position, player.position, Tree.speed * Time.deltaTime);
+            return Result.Running;
         }
+        return Result.Failure;
     }
 }

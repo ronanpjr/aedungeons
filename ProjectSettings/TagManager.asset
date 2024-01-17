@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Slime
+  - Bat
+  - LevelExit
+  - Stairs0
   layers:
   - Default
   - TransparentFX
