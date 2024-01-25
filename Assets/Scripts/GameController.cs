@@ -35,13 +35,7 @@ public class GameController : MonoBehaviour
     
     // Update is called once per frame
     void TestePilha() {
-    /*    if(healingArea0 != null && UnityEngine.Vector3.Distance(trans.position, healingArea0.position) < 0.1f) {
-                int x = 5;
-                bool type = false;
-                playerHealth.Push(x, type);
-                Destroy(healingArea0.gameObject);
-        }
-    */
+
         if(Input.GetKeyDown(KeyCode.V)) {
             int x = 5;
             bool type = true;

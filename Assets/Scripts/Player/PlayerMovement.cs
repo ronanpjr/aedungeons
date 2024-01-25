@@ -65,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Slime"))
         {
+                FindObjectOfType<AudioManager>().Play("hurt");
+
             Debug.Log("PLAYER LEVANDO DANO");
             HealthNode atual  = gc.playerHealth.top;
 
@@ -81,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.gameObject.CompareTag(("Bat"))) 
         {
+            FindObjectOfType<AudioManager>().Play("hurt");
 
             Debug.Log("PLAYER LEVANDO DANO");
             HealthNode atual  = gc.playerHealth.top;
@@ -90,15 +93,48 @@ public class PlayerMovement : MonoBehaviour
             }
 
             if(atual.healthType == false) {  
-                atual.health = atual.health - 2;
+                atual.health = atual.health - 1;
                 if(atual.health <= 0) {
                     gc.playerHealth.PopArmor();
                 } 
             }
         }
 
+        if(other.gameObject.CompareTag("Boss")) {
+            HealthNode atual  = gc.playerHealth.top;
+
+            FindObjectOfType<AudioManager>().Play("hurt");
+            while(atual.next != null && atual.healthType != true) {
+            atual = atual.next;
+            }
+            if(atual.healthType == true) {  
+                atual.health = atual.health - 2;
+                if(atual.health <= 0) {
+                    gc.playerHealth.PopMR();
+                } 
+            
+            }
+            while(atual.next != null && atual.healthType != false) {
+                atual = atual.next;
+                }
+
+            if(atual.healthType == false) {  
+                atual.health = atual.health - 2;
+                if(atual.health <= 0) {
+                    gc.playerHealth.PopArmor();
+                } 
+            }
+
+        }
+
         if (other.gameObject.CompareTag("Potion")) {
             gc.playerHealth.Push(5, false);
+            FindObjectOfType<AudioManager>().Play("potion");
+            Destroy(other.gameObject);
+        }
+            if (other.gameObject.CompareTag("PotionMR")) {
+            gc.playerHealth.Push(5, true);
+            FindObjectOfType<AudioManager>().Play("fireball");
             Destroy(other.gameObject);
         }
 
@@ -110,7 +146,11 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = new Vector2(-0.55f, 0f);
         }
         if (other.gameObject.CompareTag("Stairs0")) {
-            this.transform.position = new Vector2(-2.322f, 1.646f);
+           this.transform.position = new Vector2(-2.322f, 1.646f);
+            
+        }
+            if (other.gameObject.CompareTag("Stairs1")) {
+            this.transform.position = new Vector2(-4.09f, 2.38f);
         }
                
     }

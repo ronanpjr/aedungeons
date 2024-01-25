@@ -11,6 +11,9 @@ TagManager:
   - Stairs0
   - Return
   - Potion
+  - Boss
+  - Stairs1
+  - PotionMR
   layers:
   - Default
   - TransparentFX

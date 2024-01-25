@@ -59,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Transform pontoAtaque;
         animator.SetTrigger("attacking");
+        FindObjectOfType<AudioManager>().Play("sword");
         if (this.jogador.direcaoMovimento == DirecaoMovimento.Direita)
         {
             pontoAtaque = this.pontoAtaqueDireita;
@@ -89,6 +90,7 @@ public class PlayerAttack : MonoBehaviour
     private void Atirar(GameObject arrow) {
         
         Collider2D colliderInimigo = Physics2D.OverlapCircle(arrow.transform.position, this.raioAtaque, this.layerAtaque);
+        FindObjectOfType<AudioManager>().Play("fireball");
 
         if (colliderInimigo != null)
         {

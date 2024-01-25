@@ -4,6 +4,7 @@ using Lista;
 using Unity.VisualScripting;
 using UnityEngine;
 using Enemy;
+using UnityEngine.SceneManagement;
 
 class Boss : Inimigo {
     public override void Start() {  
@@ -12,6 +13,10 @@ class Boss : Inimigo {
         vidas.Push(5, true);
     }
 
+    public override void Death()
+    {
+        SceneManager.LoadScene(2);
+        base.Death();
+    }
 }
 
-    
