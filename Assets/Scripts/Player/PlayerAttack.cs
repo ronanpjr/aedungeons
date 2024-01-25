@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Enemy;
 public class PlayerAttack : MonoBehaviour
 {
 
@@ -98,9 +98,10 @@ public class PlayerAttack : MonoBehaviour
             
             if (inimigo != null)
             {
+                
                 inimigo.receberDanoMagico();
-                Destroy(arrow);   
             }
+            Destroy(arrow);
         }
     } 
 

@@ -9,6 +9,8 @@ TagManager:
   - Bat
   - LevelExit
   - Stairs0
+  - Return
+  - Potion
   layers:
   - Default
   - TransparentFX

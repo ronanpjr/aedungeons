@@ -197,7 +197,7 @@ MonoBehaviour:
   - {fileID: 0}
   trans: {fileID: 8356690996543591967}
   player: {fileID: 0}
-  speed: 1
+  speed: 0.5
   gameController: {fileID: 0}
 --- !u!95 &5780564747631057816
 Animator:

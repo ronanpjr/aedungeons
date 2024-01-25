@@ -1,21 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Lista;
 using Unity.VisualScripting;
 using UnityEngine;
 
+namespace Enemy {
 public class Inimigo : MonoBehaviour
 {
     [SerializeField]
     private int v;
     public bool t;
 
-    private HealthList vidas;
+    [NonSerialized] public HealthList vidas;
 
-    public void Start() {
+    public virtual void Start() {
         vidas = new HealthList();
         vidas.Push(v,t);
     }
+
+    
     public void receberDano() {
         if(this.vidas.top.healthType == false) {
             this.vidas.top.health--;
@@ -44,3 +48,4 @@ public class Inimigo : MonoBehaviour
         } 
     }
 }
+} 

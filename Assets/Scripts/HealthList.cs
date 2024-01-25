@@ -115,11 +115,11 @@ public class HealthList
 
     
     public string UIPrintFila() {
-        if (top == null) return "No life";
+        if (Empty()) return "No life";
         else {
         HealthNode anterior = top;
         string healthStr = "Nodes de vida: ";
-           while(anterior.next != null) {
+           while(anterior != null) {
             healthStr = healthStr + anterior.health.ToString();
             if (anterior.healthType == false) {
                 healthStr = healthStr + " de Armadura" + "   ";

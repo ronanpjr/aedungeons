@@ -5,6 +5,7 @@ using Lista;
 using System;
 using System.Numerics;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 [Serializable]
@@ -16,9 +17,8 @@ public class GameController : MonoBehaviour
     
     
     public TextMeshProUGUI   txt;
-    public  HealthList playerHealth = new HealthList();
+    [NonSerialized] public HealthList playerHealth = new HealthList();
 
-    private int nodeCount=0;
     void Start() {
 
         playerHealth.Push(5, true);
@@ -31,21 +31,17 @@ public class GameController : MonoBehaviour
     {   
         txt.text = playerHealth.UIPrintFila();
         TestePilha();
-        PlayerStatus();
     }
     
     // Update is called once per frame
     void TestePilha() {
-        if(healingArea0 != null && UnityEngine.Vector3.Distance(trans.position, healingArea0.position) < 0.1f) {
-               if (nodeCount < 1) {
+    /*    if(healingArea0 != null && UnityEngine.Vector3.Distance(trans.position, healingArea0.position) < 0.1f) {
                 int x = 5;
                 bool type = false;
                 playerHealth.Push(x, type);
-                nodeCount++;
                 Destroy(healingArea0.gameObject);
-            }   
         }
-
+    */
         if(Input.GetKeyDown(KeyCode.V)) {
             int x = 5;
             bool type = true;
@@ -64,20 +60,8 @@ public class GameController : MonoBehaviour
             playerHealth.Display();
         }
        
-        if(Input.GetKeyDown(KeyCode.G)) {
-            playerHealth.PopArmor();
-
-        }   
-    
-        
-        if(Input.GetKeyDown(KeyCode.H)) {            
-   
-        }       
    }
 
-        private void PlayerStatus() {
-        if (playerHealth.top == null)  Destroy(gameObject);
-    }
 
 }
 

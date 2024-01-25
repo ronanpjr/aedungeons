@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         this.direcaoMovimento = DirecaoMovimento.Direita;
     }
     void FixedUpdate() {
-
+        playerStatus();
         Move();
     }
 
@@ -97,22 +97,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("LevelExit")) {
-            Scene currentScene = SceneManager.GetActiveScene();
-            if(currentScene.name == "SampleScene" || currentScene.name == "Scene3") {
-                SceneManager.LoadScene(1);
-            }
-            else {
-                SceneManager.LoadScene(2);
-            }
-            
+        if (other.gameObject.CompareTag("Potion")) {
+            gc.playerHealth.Push(5, false);
+            Destroy(other.gameObject);
         }
 
-        if(other.gameObject.CompareTag("Stairs0")) {
-            Scene currentScene = SceneManager.GetActiveScene();
-            if(currentScene.name == "SampleScene") SceneManager.LoadScene(2);
-            if(currentScene.name == "Scene3") SceneManager.LoadScene(0);
+        if (other.gameObject.CompareTag("LevelExit")) {
+           this.transform.position = new Vector2(1.414f, 1.975f); 
         }
+
+        if (other.gameObject.CompareTag("Return")) {
+            this.transform.position = new Vector2(-0.55f, 0f);
+        }
+        if (other.gameObject.CompareTag("Stairs0")) {
+            this.transform.position = new Vector2(-2.322f, 1.646f);
+        }
+               
     }
     
+    void playerStatus() {
+           if (gc.playerHealth.Empty()) SceneManager.LoadScene(1);
+    }
 }

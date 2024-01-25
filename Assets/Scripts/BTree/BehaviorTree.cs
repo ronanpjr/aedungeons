@@ -15,15 +15,13 @@ public class BehaviorTree : MonoBehaviour
     public Transform[] waypoints;
     public Transform trans;
     public Transform player;
-    public float speed = 0.2f; 
+    public float speed = 0.1f; 
 
     public GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
-       /* Blackboard = new Dictionary<string, object>();
-        Blackboard.Add("WorldBounds", new Rect(0,0,0.5f,0.5f)); */
 
         // comportamento inicial = parado;
         startedBehavior = false;
