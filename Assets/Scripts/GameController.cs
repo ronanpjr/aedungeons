@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     [NonSerialized] public HealthList playerHealth = new HealthList();
 
     void Start() {
-
+        FindObjectOfType<AudioManager>().Play("background");
         playerHealth.Push(5, true);
         playerHealth.Push(5, false);
     }

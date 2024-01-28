@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
             if (other.gameObject.CompareTag("PotionMR")) {
             gc.playerHealth.Push(5, true);
-            FindObjectOfType<AudioManager>().Play("fireball");
+            FindObjectOfType<AudioManager>().Play("potion");
             Destroy(other.gameObject);
         }
 
